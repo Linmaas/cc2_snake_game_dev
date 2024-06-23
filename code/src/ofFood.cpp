@@ -1,4 +1,5 @@
 #include "ofFood.h"
+#include "ofConfig.h"
 
 
 ofFood::ofFood() {
@@ -18,11 +19,11 @@ ofFood::~ofFood() {
 
 void ofFood::pickLocation() {
 
-    int cols = floor(ofGetWidth() / scl);
-    int rows = floor(ofGetHeight() / scl);
+    int cols = floor(ofGetWidth() / gridSize);
+    int rows = floor(ofGetHeight() / gridSize);
 
-    myPos.x = floor(ofRandom(cols))*scl;
-    myPos.y = floor(ofRandom(rows))*scl;
+    myPos.x = floor(ofRandom(cols))* gridSize;
+    myPos.y = floor(ofRandom(rows))* gridSize;
 
     cout << "PICKED " << myPos.x << endl;
 }
@@ -31,6 +32,6 @@ void ofFood::pickLocation() {
 void ofFood::drawFood() {
     
     ofSetColor(color);
-    ofDrawRectangle(myPos.x,myPos.y, scl, scl);
+    ofDrawRectangle(myPos.x,myPos.y, gridSize, gridSize);
 }
 

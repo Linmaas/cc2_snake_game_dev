@@ -16,12 +16,12 @@ void ofApp::setup(){
 void ofApp::update(){
 	
 	
-	mySnake.updateSnake();
-
-	if (mySnake.eat(myFood.myPos)) {
-		myFood.pickLocation();
-        
-	}
+    mySnake.updateSnake();
+        if (mySnake.eat(myFood.myPos)) {
+            myFood.pickLocation();
+            mySnake.grow();
+            std::cout << "Snake has grown." << std::endl;
+        }
 
 }
 

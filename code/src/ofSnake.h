@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofConfig.h"
 
 
 class ofSnake {
@@ -9,23 +10,17 @@ public:
 
     ofSnake();
     ~ofSnake();
-
-    int foo = 6;
-
     
+    int gridSize = ofConfig::GridSize;
 
-    float xSpeed;
-    float ySpeed;
-    
-    int cellSize = 50;
-
-    ofColor colorIO;
-
-    void updateSnake();
-    void drawSnake();
-    void setDir(int x, int y);
-    bool eat(ofVec2f foodPos);
-
-    ofVec2f myPos{ 0,0 };
+    std::vector<ofVec2f> body;  // Vector to hold the segments of the snake's body
+        int xSpeed, ySpeed;
+        ofColor color;
+        
+        void updateSnake();
+        void drawSnake();
+        void setDir(int x, int y);
+        bool eat(ofVec2f foodPos);
+        void grow();
 
 };

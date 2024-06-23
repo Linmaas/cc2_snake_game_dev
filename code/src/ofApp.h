@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofSnake.h"
 #include "ofFood.h"
+#include "ofConfig.h"
 
 
 // TODO: Refactoring

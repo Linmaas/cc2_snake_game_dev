@@ -1,12 +1,6 @@
-//
-//  ofConfig.h
-//  code
-//
-//  Created by Linda Maas on 23.06.24.
-//
+// Config.h
+#pragma once
 
-#ifndef ofConfig_h
-#define ofConfig_h
-
-
-#endif /* ofConfig_h */
+namespace ofConfig {
+    const int GridSize = 50;  // Set grid size
+}

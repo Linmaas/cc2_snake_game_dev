@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofConfig.h"
 
 
 class ofFood {
@@ -10,7 +11,8 @@ public:
     ofFood();
     ~ofFood();
 
-    int scl = 50;
+    int gridSize = ofConfig::GridSize;
+    
     
     ofColor color;
     ofVec2f myPos{};
