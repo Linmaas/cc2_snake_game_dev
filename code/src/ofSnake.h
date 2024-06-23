@@ -22,5 +22,10 @@ public:
         void setDir(int x, int y);
         bool eat(ofVec2f foodPos);
         void grow();
+    
+    ofImage segmentImage;  // Image for the snake segment
+    
+private:
+    void loadSegmentImage();  // Function to load the image
 
 };

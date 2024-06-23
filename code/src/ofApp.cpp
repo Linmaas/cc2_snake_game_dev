@@ -9,7 +9,7 @@ void ofApp::setup(){
     // used instead?
 	ofSetFrameRate(10);
     
-	ofBackground(0);
+	ofBackground(255,255,255);
 }
 
 //--------------------------------------------------------------
