@@ -7,7 +7,10 @@ ofSnake::ofSnake() {
     xSpeed = 0;  // Initial speed is zero
     ySpeed = 0;
     color.set(255);  // Color white
-    loadSegmentImage();  // Load the segment image
+    loadSegmentImages();  // Load the segment images
+    currentFrame = 0;
+    frameDuration = 0.1f;  // Change frame every 0.1 seconds
+    lastFrameTime = ofGetElapsedTimef();
 }
 
 // Destructor
@@ -15,9 +18,18 @@ ofSnake::~ofSnake() {
     std::cout << "help, I will die" << std::endl;
 }
 
-// Load the segment image
-void ofSnake::loadSegmentImage() {
-    segmentImage.load("ant.png");  // Ensure this file is in bin/data
+// Load the segment images
+void ofSnake::loadSegmentImages() {
+    int numFrames = 5;  // Adjust this to the number of frames you have
+    for (int i = 0; i < numFrames; ++i) {
+        ofImage img;
+        std::string fileName = "ant_" + std::to_string(i) + ".png";
+        if (img.load(fileName)) {
+            segmentImages.push_back(img);
+        } else {
+            ofLogError() << "Failed to load image: " << fileName;
+        }
+    }
 }
 
 // Update the snake's position
@@ -44,45 +56,52 @@ void ofSnake::updateSnake() {
     }
 }
 
-// Draw the snake using the loaded image
+// Draw the snake using the loaded image sequence
 void ofSnake::drawSnake() {
     ofSetColor(255);  // Ensure the color is white to draw the image without tint
 
-        for (size_t i = 0; i < body.size(); ++i) {
-            ofVec2f segment = body[i];
-            
-            // Determine the angle based on direction
-            float angle = 0;
-            if (i == 0) {  // Head of the snake
-                if (xSpeed == 1) {
-                    angle = 90;    // Facing right
-                } else if (xSpeed == -1) {
-                    angle = -90;  // Facing left
-                } else if (ySpeed == 1) {
-                    angle = 180;   // Facing down
-                } else if (ySpeed == -1) {
-                    angle = 0;  // Facing up
-                }
-            } else {  // Body segments follow the head, so no rotation needed
-                ofVec2f prevSegment = body[i - 1];
-                if (segment.x < prevSegment.x) {
-                    angle = 90;
-                } else if (segment.x > prevSegment.x) {
-                    angle = -90;
-                } else if (segment.y < prevSegment.y) {
-                    angle = 180;
-                } else if (segment.y > prevSegment.y) {
-                    angle = 0;
-                }
+    // Update current frame based on elapsed time
+    float currentTime = ofGetElapsedTimef();
+    if (currentTime - lastFrameTime >= frameDuration) {
+        currentFrame = (currentFrame + 1) % segmentImages.size();
+        lastFrameTime = currentTime;
+    }
+
+    for (size_t i = 0; i < body.size(); ++i) {
+        ofVec2f segment = body[i];
+        
+        // Determine the angle based on direction
+        float angle = 0;
+        if (i == 0) {  // Head of the snake
+            if (xSpeed == 1) {
+                angle = 90;    // Facing right
+            } else if (xSpeed == -1) {
+                angle = -90;  // Facing left
+            } else if (ySpeed == 1) {
+                angle = 180;   // Facing down
+            } else if (ySpeed == -1) {
+                angle = 0;  // Facing up
             }
-            
-            ofPushMatrix();
-            ofTranslate(segment.x + gridSize / 2, segment.y + gridSize / 2);  // Move to the center of the segment
-            ofRotateDeg(angle);  // Rotate around the center of the segment
-            ofTranslate(-gridSize / 2, -gridSize / 2);  // Move back to the top-left corner
-            segmentImage.draw(0, 0, gridSize, gridSize);  // Draw the image
-            ofPopMatrix();
+        } else {  // Body segments follow the head, so no rotation needed
+            ofVec2f prevSegment = body[i - 1];
+            if (segment.x < prevSegment.x) {
+                angle = 90;
+            } else if (segment.x > prevSegment.x) {
+                angle = -90;
+            } else if (segment.y < prevSegment.y) {
+                angle = 180;
+            } else if (segment.y > prevSegment.y) {
+                angle = 0;
+            }
         }
+        
+        ofPushMatrix();
+        ofTranslate(segment.x + gridSize / 2, segment.y + gridSize / 2);  // Move to the center of the segment
+        ofRotateDeg(angle);  // Rotate around the center of the segment
+        ofTranslate(-gridSize / 2, -gridSize / 2);  // Move back to the top-left corner
+        segmentImages[currentFrame].draw(0, 0, gridSize, gridSize);  // Draw the current frame
+        ofPopMatrix();
+    }
 }
 
 // Set the snake's direction
@@ -111,5 +130,21 @@ bool ofSnake::eat(ofVec2f foodPos) {
         return true;
     }
 
+    return false;
+}
+
+//Check for self collision
+
+bool ofSnake::checkSelfCollision() {
+    if (body.size() < 2) return false;  // No collision if the snake has less than 2 segments
+
+    ofVec2f head = body[0];
+    for (size_t i = 1; i < body.size(); ++i) {
+        if (head == body[i]) {
+            std::cout << "collided!" << std::endl;
+            
+            return true;  // Collision detected
+        }
+    }
     return false;
 }

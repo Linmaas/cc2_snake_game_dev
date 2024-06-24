@@ -22,10 +22,15 @@ public:
         void setDir(int x, int y);
         bool eat(ofVec2f foodPos);
         void grow();
+        bool checkSelfCollision();  // Check if the snake collides with itself
+
     
-    ofImage segmentImage;  // Image for the snake segment
-    
-private:
-    void loadSegmentImage();  // Function to load the image
+    std::vector<ofImage> segmentImages;  // Vector to hold the images for animation
+        int currentFrame;  // Current frame in the animation sequence
+        float frameDuration;  // Duration for each frame
+        float lastFrameTime;  // Time when the last frame was updated
+
+    private:
+        void loadSegmentImages();  // Function to load the images
 
 };
