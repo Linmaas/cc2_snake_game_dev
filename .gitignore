@@ -59,5 +59,10 @@ Thumbs.db
 
 # visual studio
 *.sln
+
+*.exe
+*.out
+*.app
 *.vs
+*.xcuserstate
 
