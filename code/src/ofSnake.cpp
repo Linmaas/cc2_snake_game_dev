@@ -14,7 +14,7 @@ ofSnake::ofSnake() {
 
 ofSnake::~ofSnake() {
 
-    int test = 4;
+    
     std::cout << "help, I will die" << std::endl;
 
 }

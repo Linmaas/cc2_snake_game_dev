@@ -59,4 +59,5 @@ Thumbs.db
 
 # visual studio
 *.sln
+*.vs
 

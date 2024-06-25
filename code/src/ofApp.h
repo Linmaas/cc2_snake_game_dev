@@ -26,5 +26,8 @@ class ofApp : public ofBaseApp{
 		
     ofSnake mySnake{};
     ofFood myFood{};
+
+	
+
     
 };
