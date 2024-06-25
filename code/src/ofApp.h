@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofSnake.h"
 #include "ofFood.h"
+#include "ofConfig.h"
 
 
 // TODO: Refactoring
@@ -24,10 +25,20 @@ class ofApp : public ofBaseApp{
 
 		void keyPressed(int key);
 		
+    ofImage backgroundImage;
     ofSnake mySnake{};
     ofFood myFood{};
 
 	
+
+    
+    bool gameOver;  // Flag to indicate if the game is over
+    
+    ofTrueTypeFont gameOverFont;  // Font for the "Game Over" text
+
+    
+private:
+    void loadBackgroundImage();  // Function to load the image
 
     
 };
