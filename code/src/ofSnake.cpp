@@ -20,7 +20,7 @@ ofSnake::~ofSnake() {
 
 // Load the segment images
 void ofSnake::loadSegmentImages() {
-    int numFrames = 5;  // Adjust this to the number of frames you have
+    int numFrames = 6;  // Adjust this to the number of frames you have
     for (int i = 0; i < numFrames; ++i) {
         ofImage img;
         std::string fileName = "ant_" + std::to_string(i) + ".png";
@@ -136,13 +136,12 @@ bool ofSnake::eat(ofVec2f foodPos) {
 //Check for self collision
 
 bool ofSnake::checkSelfCollision() {
-    if (body.size() < 2) return false;  // No collision if the snake has less than 2 segments
+    if (body.size() < 5) return false;  // No collision if the snake has less than 5 segments (arbitrary choice to avoid false positives during sharp turns)
 
     ofVec2f head = body[0];
-    for (size_t i = 1; i < body.size(); ++i) {
+    for (size_t i = 4; i < body.size(); ++i) {  // Start checking from the 5th segment onward
         if (head == body[i]) {
             std::cout << "collided!" << std::endl;
-            
             return true;  // Collision detected
         }
     }

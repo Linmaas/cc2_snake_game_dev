@@ -11,7 +11,7 @@ public:
     ofFood();
     ~ofFood();
 
-    int gridSize = ofConfig::GridSize;
+    int gridSize = ofConfig::GridSize  ;
     
     
     ofColor color;

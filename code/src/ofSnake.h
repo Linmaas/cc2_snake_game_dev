@@ -11,7 +11,7 @@ public:
     ofSnake();
     ~ofSnake();
     
-    int gridSize = ofConfig::GridSize;
+    int gridSize = ofConfig::GridSize  ;
 
     std::vector<ofVec2f> body;  // Vector to hold the segments of the snake's body
         int xSpeed, ySpeed;

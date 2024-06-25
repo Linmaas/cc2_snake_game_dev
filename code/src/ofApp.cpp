@@ -10,7 +10,7 @@ void ofApp::setup(){
     // of using the frame rate and what other approach could be
     // used instead?
 	ofSetFrameRate(10);
-    backgroundImage.load("piknik.png");
+    backgroundImage.load("piknik_2.png");
     gameOver = false;  // Initialize the gameOver flag
     // Load the font with size 32
     gameOverFont.load("ants.ttf", 80);
@@ -56,7 +56,7 @@ void ofApp::draw(){
     if (gameOver) {
             
         ofBackground(255, 255, 255);
-            ofSetColor(255, 0, 0);
+            ofSetColor(0, 0, 0);
             std::string gameOverText = "Game Over";
             float textWidth = gameOverFont.stringWidth(gameOverText);
             float textHeight = gameOverFont.stringHeight(gameOverText);
