@@ -22,7 +22,7 @@ public:
     bool eat(ofVec2f foodPos);
     void grow();
     bool checkSelfCollision(); // Check if the snake collides with itself
-
+    void resetSnake();         // Reset the snake to its initial state
     std::vector<ofImage> segmentImages; // Vector to hold the images for animation
     int currentFrame;                   // Current frame in the animation sequence
     float frameDuration;                // Duration for each frame
@@ -31,6 +31,6 @@ public:
 private:
     void loadSegmentImages(); // Function to load the images
 
-private:
-    void loadSegmentImages(); // Function to load the images
+//private:
+    //void loadSegmentImages(); // Function to load the images
 };

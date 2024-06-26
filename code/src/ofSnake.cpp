@@ -192,3 +192,15 @@ bool ofSnake::checkSelfCollision()
     }
     return false;
 }
+
+// Reset the snake to its initial state
+
+void ofSnake::resetSnake()
+{
+    body.clear();
+    body.push_back(ofVec2f(100, 100)); // Start with one segment at position (100, 100)
+    xSpeed = 0;                        // Initial speed is zero
+    ySpeed = 0;
+    currentFrame = 0;
+    lastFrameTime = ofGetElapsedTimef();
+}

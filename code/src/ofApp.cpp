@@ -50,17 +50,14 @@ void ofApp::draw(){
 
        // Enable blending again if you need it for other drawings
        ofEnableAlphaBlending();
+
 	mySnake.drawSnake();
 	myFood.drawFood();
     
     if (gameOver) {
             
-        ofBackground(255, 255, 255);
-            ofSetColor(0, 0, 0);
-            std::string gameOverText = "Game Over";
-            float textWidth = gameOverFont.stringWidth(gameOverText);
-            float textHeight = gameOverFont.stringHeight(gameOverText);
-            gameOverFont.drawString(gameOverText, ofGetWidth() / 2 - textWidth / 2, ofGetHeight() / 2 + textHeight / 2);
+        myUI.GameOverScreen(gameOverFont, gameOver);
+        myUI.PlayAgainButton(gameOver);    
     
         }
 }
@@ -90,7 +87,27 @@ void ofApp::keyPressed(int key){
 	}
 }
 
+void ofApp::mousePressed(int x, int y, int button) {
+    if (gameOver) {
+        float buttonWidth = 200;
+        float buttonHeight = 50;
+        float buttonX = ofGetWidth() / 2 - buttonWidth / 2; ;
+        float buttonY = ofGetHeight() / 2 - buttonHeight / 2 + 200;
+        if(isMouseOver(x, y, buttonX, buttonY, buttonWidth, buttonHeight)) {
+            resetGame();
+        }
+    }
+}
 
+void ofApp::resetGame() {
+    gameOver = false;
+    mySnake.resetSnake();
+    myFood.pickLocation();
+}
+
+bool ofApp::isMouseOver(float mouseX, float mouseY, float x, float y, float width, float height) {
+    return mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height;
+}
 
 
 

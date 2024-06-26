@@ -13,10 +13,16 @@
 		<ClCompile Include="src\ofApp.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
+		<ClCompile Include="src\ofConfig.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
 		<ClCompile Include="src\ofFood.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
 		<ClCompile Include="src\ofSnake.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="src\ofUI.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
 	</ItemGroup>
@@ -32,10 +38,19 @@
 		<ClInclude Include="src\ofApp.h">
 			<Filter>src</Filter>
 		</ClInclude>
+		<ClInclude Include="src\ofConfig.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofConfig.hpp">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="src\ofFood.h">
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="src\ofSnake.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="src\ofUI.h">
 			<Filter>src</Filter>
 		</ClInclude>
 	</ItemGroup>

@@ -106,13 +106,18 @@
 	<ItemGroup>
 		<ClCompile Include="src\main.cpp" />
 		<ClCompile Include="src\ofApp.cpp" />
+		<ClCompile Include="src\ofConfig.cpp" />
 		<ClCompile Include="src\ofFood.cpp" />
 		<ClCompile Include="src\ofSnake.cpp" />
+		<ClCompile Include="src\ofUI.cpp" />
 	</ItemGroup>
 	<ItemGroup>
 		<ClInclude Include="src\ofApp.h" />
+		<ClInclude Include="src\ofConfig.h" />
+		<ClInclude Include="src\ofConfig.hpp" />
 		<ClInclude Include="src\ofFood.h" />
 		<ClInclude Include="src\ofSnake.h" />
+		<ClInclude Include="src\ofUI.h" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
